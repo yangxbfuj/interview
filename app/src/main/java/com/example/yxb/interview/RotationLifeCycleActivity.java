@@ -1,10 +1,14 @@
 package com.example.yxb.interview;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 /**
@@ -12,14 +16,25 @@ import android.widget.TextView;
  */
 public class RotationLifeCycleActivity extends Activity {
 
+    private static final String sSaveTag = "save";
     private TextView mInfoTextView;
+    private CheckBox mCheckBox;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ratation_lifecycler);
         mInfoTextView = findViewById(R.id.rotationLifeCycleTextView);
         printInfo("onCreate(Bundle savedInstanceState)");
+        if (savedInstanceState != null) {
+            String saveInfo = savedInstanceState.getString(sSaveTag);
+            if (!TextUtils.isEmpty(saveInfo)) {
+                printInfo("onCreate -> get save info " + saveInfo);
+            } else {
+                savedInstanceState.putString(sSaveTag, "info from onCreate");
+                printInfo("onCreate -> save info " + "info from onCreate");
+            }
+        }
     }
 
     @Override
@@ -56,6 +71,12 @@ public class RotationLifeCycleActivity extends Activity {
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         printInfo("onPostCreate(@Nullable Bundle savedInstanceState)");
+        String saveInfo = null;
+        if (savedInstanceState != null)
+            saveInfo = savedInstanceState.getString(sSaveTag);
+        if (!TextUtils.isEmpty(saveInfo)) {
+            printInfo("onCreate -> get save info " + saveInfo);
+        }
     }
 
     @Override
@@ -71,9 +92,17 @@ public class RotationLifeCycleActivity extends Activity {
     }
 
     @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        printInfo("onConfigurationChanged(Configuration newConfig)");
+    }
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         printInfo("onSaveInstanceState(Bundle outState)");
+        outState.putString(sSaveTag, "info from onCreate");
+        printInfo("onSaveInstanceState -> save info " + "info from onSaveInstanceState");
     }
 
     @Override
