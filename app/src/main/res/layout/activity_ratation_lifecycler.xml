@@ -9,7 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
+        <Button
+            android:id="@+id/rotationLifeCycleBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="启动新的Activity"/>
         <TextView
             android:id="@+id/rotationLifeCycleTextView"
             android:layout_width="match_parent"

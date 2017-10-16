@@ -1,12 +1,15 @@
 package com.example.yxb.interview;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -18,13 +21,21 @@ public class RotationLifeCycleActivity extends Activity {
 
     private static final String sSaveTag = "save";
     private TextView mInfoTextView;
-    private CheckBox mCheckBox;
+    private Button mButton;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ratation_lifecycler);
         mInfoTextView = findViewById(R.id.rotationLifeCycleTextView);
+        mButton = findViewById(R.id.rotationLifeCycleBtn);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RotationLifeCycleActivity.this,RotationLifeCycleActivity.class);
+                startActivity(intent);
+            }
+        });
         printInfo("onCreate(Bundle savedInstanceState)");
         if (savedInstanceState != null) {
             String saveInfo = savedInstanceState.getString(sSaveTag);
@@ -35,6 +46,12 @@ public class RotationLifeCycleActivity extends Activity {
                 printInfo("onCreate -> save info " + "info from onCreate");
             }
         }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        printInfo("onNewIntent");
+        super.onNewIntent(intent);
     }
 
     @Override
@@ -121,5 +138,10 @@ public class RotationLifeCycleActivity extends Activity {
         mInfoTextView.append(info);
         mInfoTextView.append("\n");
         Log.i("面试 屏幕旋转生命周期", info);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

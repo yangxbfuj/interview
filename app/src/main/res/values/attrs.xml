@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RulerScrollerView">
+        <attr name="ruler_length" format="integer" />
+        <attr name="ruler_unit_length" format="dimension" />
+    </declare-styleable>
+</resources>

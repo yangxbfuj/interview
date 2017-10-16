@@ -10,15 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".RotationLifeCycleActivity"
-            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".RotationLifeCycleActivity"
+            android:launchMode="singleTask"></activity>
+        <activity android:name=".ServiceActivity"></activity>
+        <activity android:name=".HandlerActivity"/>
+        <activity android:name=".scrollview.ScrollerViewActivity"/>
+
+        <service android:name=".service.NormalService" />
+        <service android:name=".service.MyIntentService"/>
     </application>
 
 </manifest>
