@@ -33,5 +33,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ScrollView" />
+
+        <Button
+            android:id="@+id/btnAnimation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="animation" />
+
+        <Button
+            android:id="@+id/btnSecond"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="start second" />
+
+        <Button
+            android:id="@+id/btnAIDL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="start aidl" />
     </LinearLayout>
 </ScrollView>

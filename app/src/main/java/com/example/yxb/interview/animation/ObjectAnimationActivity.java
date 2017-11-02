@@ -1,4 +1,4 @@
-package com.example.yxb.interview;
+package com.example.yxb.interview.animation;
 
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
  * Created by yxb on 2017/10/16.
  */
 
-public class AnimationActivity extends AppCompatActivity {
+public class ObjectAnimationActivity extends AppCompatActivity {
 
     float mAnimationValue = 0f;
 

@@ -144,7 +144,6 @@ public class RulerScrollerView extends View {
      */
     @Override
     public void computeScroll() {
-        super.computeScroll();
         // 是否滚动完毕
         if (mScroller.computeScrollOffset()) {
             // 界面来进行滚动

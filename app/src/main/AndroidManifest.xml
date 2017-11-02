@@ -2,10 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.yxb.interview">
 
+    <!--<permission android:name="com.yxb.aidl" />-->
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -19,11 +22,15 @@
             android:name=".RotationLifeCycleActivity"
             android:launchMode="singleTask"></activity>
         <activity android:name=".ServiceActivity"></activity>
-        <activity android:name=".HandlerActivity"/>
-        <activity android:name=".scrollview.ScrollerViewActivity"/>
+        <activity android:name=".HandlerActivity" />
+        <activity android:name=".scrollview.ScrollerViewActivity" />
+
+        <activity android:name=".animation.FrameAnimationActivity" />
+        <activity android:name=".animation.ObjectAnimationActivity" />
+        <activity android:name=".animation.AnimationActivity" />
 
         <service android:name=".service.NormalService" />
-        <service android:name=".service.MyIntentService"/>
+        <service android:name=".service.MyIntentService" />
     </application>
 
 </manifest>
