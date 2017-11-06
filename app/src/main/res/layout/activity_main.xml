@@ -51,5 +51,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="start aidl" />
+
+        <Button
+            android:id="@+id/btnBinderService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="start custom_binder" />
     </LinearLayout>
 </ScrollView>

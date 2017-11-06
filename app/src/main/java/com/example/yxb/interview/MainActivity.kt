@@ -1,23 +1,20 @@
 package com.example.yxb.interview
 
-import android.annotation.SuppressLint
 import android.app.ActivityManager
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Process
-import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import com.example.yxb.interview.animation.AnimationActivity
 import com.example.yxb.interview.scrollview.ScrollerViewActivity
 import android.content.ComponentName
 import android.content.Context
 import android.content.ServiceConnection
 import android.os.IBinder
+import com.example.yxb.interview.service.BinderS
+import com.example.yxb.interview.service.BinderService
 import com.yxb.server.IMyAidlInterface
 
 
@@ -63,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             bindService(intent, object : ServiceConnection {
                 override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
                     myservice = IMyAidlInterface.Stub.asInterface(service)
-                    Log.i("First ", "Pid is " + Process.myPid())
+                    Log.i("First ", "onServiceConnected Pid is " + Process.myPid())
                     myservice?.doSomething()
                 }
 
@@ -73,7 +70,20 @@ class MainActivity : AppCompatActivity() {
 
             }, Context.BIND_AUTO_CREATE)
         }
+        findViewById<Button>(R.id.btnBinderService).setOnClickListener {
+            val intent = Intent(this,BinderService::class.java)
+            bindService(intent, object : ServiceConnection {
+                override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+                    (service as? BinderS)?.doSomething()
+                }
 
+                override fun onServiceDisconnected(name: ComponentName?) {
+
+                }
+
+            }, Context.BIND_AUTO_CREATE)
+        }
+        Log.i("First ", "bindService end Pid is " + Process.myPid())
     }
 
     /**

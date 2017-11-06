@@ -9,7 +9,7 @@ android {
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.example.yxb.interview"
-        minSdkVersion 25
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
