@@ -1,5 +1,6 @@
 package com.example.yxb.interview
 
+import android.Manifest
 import android.app.ActivityManager
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -19,6 +20,8 @@ import com.yxb.server.IMyAidlInterface
 
 
 class MainActivity : AppCompatActivity() {
+
+    val requestCode = 123131
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +74,7 @@ class MainActivity : AppCompatActivity() {
             }, Context.BIND_AUTO_CREATE)
         }
         findViewById<Button>(R.id.btnBinderService).setOnClickListener {
-            val intent = Intent(this,BinderService::class.java)
+            val intent = Intent(this, BinderService::class.java)
             bindService(intent, object : ServiceConnection {
                 override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
                     (service as? BinderS)?.doSomething()
@@ -83,7 +86,30 @@ class MainActivity : AppCompatActivity() {
 
             }, Context.BIND_AUTO_CREATE)
         }
+
+        findViewById<Button>(R.id.btnRequestPermission).setOnClickListener {
+            checkPermission(this, requestCode, contactPermissionHandler, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)
+        }
         Log.i("First ", "bindService end Pid is " + Process.myPid())
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (this.requestCode == requestCode) {
+            handlePermissions(permissions, grantResults, contactPermissionHandler)
+        }
+    }
+
+    private val contactPermissionHandler = object : HandlePermissionResult {
+
+        override fun doTask() {
+            Log.i("First ", "contactPermissionHandler success doTask")
+        }
+
+        override fun doFail() {
+            Log.i("First ", "contactPermissionHandler fail doFail")
+        }
+
     }
 
     /**
