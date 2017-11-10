@@ -20,4 +20,5 @@ class MainActivity : AppCompatActivity() {
         Log.i("First ", "ss.appTasks " + ss.appTasks.map { it.taskInfo })
         Log.i("First ", "windowManager.defaultDisplay.refreshRate " + windowManager.defaultDisplay.refreshRate)
     }
+
 }
