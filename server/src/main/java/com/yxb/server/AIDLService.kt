@@ -14,11 +14,11 @@ class AIDLService : Service() {
 
     private val mBinder = object : IMyAidlInterface.Stub() {
         override fun doSomething() {
-            Log.i("AIDLService", "doSomething  pid is  " + Process.myPid())
+            Log.i("AIDLService", "doSomething  pid is ${Process.myPid()} , thread name is ${Thread.currentThread().name} ")
         }
 
         override fun basicTypes(anInt: Int, aLong: Long, aBoolean: Boolean, aFloat: Float, aDouble: Double, aString: String?) {
-            Log.i("AIDLService", "basicTypes  pid is  " + Process.myPid())
+            Log.i("AIDLService", "basicTypes  pid is ${Process.myPid()} ")
         }
     }
 }
